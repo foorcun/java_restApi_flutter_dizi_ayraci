@@ -10,10 +10,10 @@ package com.troyatech.dizi_ayraci.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="city")
+@Table(name="dizi", schema = "dizia")
 public class Dizi {
     @Id
-    @Column(name="ID")
+    @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     @Column(name="diziName")
