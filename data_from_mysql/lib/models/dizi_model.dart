@@ -1,5 +1,10 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'dizi_model.g.dart';
+
+@JsonSerializable()
 class DiziModel {
   int? id;
   String? diziName;
@@ -32,10 +37,14 @@ class DiziModel {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  // String toJson() => json.encode(toMap());
+  Map<String, dynamic> toJson() => _$DiziModelToJson(this);
 
-  factory DiziModel.fromJson(String source) =>
-      DiziModel.fromMap(json.decode(source));
+  // factory DiziModel.fromJson(String source) =>
+  //     DiziModel.fromMap(json.decode(source));
+
+  factory DiziModel.fromJson(Map<String, dynamic> json) =>
+      _$DiziModelFromJson(json);
 
   @override
   String toString() => 'DiziModel(id: $id, diziName: $diziName)';
