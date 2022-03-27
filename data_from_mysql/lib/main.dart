@@ -1,86 +1,22 @@
-import 'dart:convert';
-
-import 'package:data_from_mysql/data.api/dizi_api.dart';
-import 'package:data_from_mysql/models/dizi_model.dart';
+import '../presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return GetMaterialApp(
+      title: 'Flutter Demo',
+      initialRoute: "/homePage",
+      getPages: [
+        GetPage(name: "/homePage", page: () => HomePage()),
+      ],
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  List<DiziModel> diziler = [];
-  @override
-  void initState() {
-    super.initState();
-    // getDizilerFromApi();
-  }
-
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  void getDizilerFromApi() {
-    // var v = DiziApi.getDiziler();
-    DiziApi.getDiziler().then((response) {
-      setState(() {
-        Iterable list = jsonDecode(response.body);
-        this.diziler = list.map((dizi) => DiziModel.fromJson(dizi)).toList();
-      });
-      print("diziler print: " + diziler.toString());
-    });
   }
 }
