@@ -37,4 +37,9 @@ public class DiziController {
     public List<Dizi> get(){
         return diziService.getAll();
     }
+
+    @PostMapping(value = "/add")
+    public void add(@RequestBody Dizi dizi){
+        diziService.add(dizi);
+    }
 }

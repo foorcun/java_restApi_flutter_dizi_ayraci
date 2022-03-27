@@ -33,19 +33,25 @@ public class HibernateDiziDal implements IDiziDal {
 	}
 
 	@Override
-	public void add(Dizi city) {
+	@Transactional
+	public void add(Dizi dizi) {
+		// TODO Auto-generated method stub
+
+		Session session = entityManager.unwrap(Session.class);
+		session.saveOrUpdate(dizi);
+		System.out.println(dizi.getId());
+		System.out.println(dizi.getDiziName());
+
+	}
+
+	@Override
+	public void update(Dizi dizi) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Dizi city) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Dizi city) {
+	public void delete(Dizi dizi) {
 		// TODO Auto-generated method stub
 		
 	}

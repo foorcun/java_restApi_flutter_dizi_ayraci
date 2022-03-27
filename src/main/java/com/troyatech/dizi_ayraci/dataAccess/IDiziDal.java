@@ -8,7 +8,7 @@ import java.util.List;
 public interface IDiziDal {
 
 	List<Dizi> getAll();
-	void add(Dizi city);
-	void update(Dizi city);
-	void delete(Dizi city);
+	void add(Dizi dizi);
+	void update(Dizi dizi);
+	void delete(Dizi dizi);
 }

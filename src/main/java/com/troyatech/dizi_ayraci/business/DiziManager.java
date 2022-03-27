@@ -31,6 +31,8 @@ public class DiziManager implements IDiziService {
 	@Override
 	public void add(Dizi dizi) {
 		// TODO Auto-generated method stub
+
+		this.diziDal.add(dizi);
 		
 	}
 
