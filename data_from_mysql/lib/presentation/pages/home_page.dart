@@ -1,5 +1,6 @@
 import 'package:data_from_mysql/core/utils/json_helper.dart';
 import 'package:data_from_mysql/data.api/dizi_api.dart';
+import 'package:data_from_mysql/models/dizi_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,18 +18,14 @@ class HomePage extends StatelessWidget {
                 child: Text("Beklenmeyen bir hata oluştu..."),
               );
             } else if (snapshot.hasData) {
-              http.Response data = snapshot.data as http.Response;
+              List<DiziModel> data = snapshot.data as List<DiziModel>;
               return ListView.builder(
                   // itemCount: 2,
-                  itemCount: JsonHelper.convertResponseToList(data.body).length,
+                  itemCount: data.length,
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
-                        // title: Text("deneme"),
-                        // title: Text(data.body),
-                        title: Text(
-                            JsonHelper.convertResponseToList(data.body)[index]
-                                .toString()),
+                        title: Text(data[index].diziName!),
                       ),
                     );
                   });
