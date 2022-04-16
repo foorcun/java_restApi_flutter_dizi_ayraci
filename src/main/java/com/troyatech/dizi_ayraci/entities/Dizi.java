@@ -19,7 +19,7 @@ public class Dizi {
     @Column(name="diziName")
     private String diziName;
 
-    public  Dizi(){}
+    public  Dizi(){} //hibernate icin birakilan bos constructor
 
     public Dizi(int id, String diziName) {
         this.id = id;
